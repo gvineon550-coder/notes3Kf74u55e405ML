@@ -8,8 +8,8 @@ permalink: /
 {% for file in site.static_files %}
   {% if file.path contains '/assets/images/' %}
     {% unless file.name contains '.gitkeep' %}
-      <a href="{{ file.path }}" target="_blank">
-        <img src="{{ file.path }}" alt="" loading="lazy">
+      <a href="{{ site.baseurl }}{{ file.path }}" target="_blank">
+        <img src="{{ site.baseurl }}{{ file.path }}" alt="" loading="lazy">
       </a>
     {% endunless %}
   {% endif %}
