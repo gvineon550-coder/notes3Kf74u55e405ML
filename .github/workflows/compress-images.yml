@@ -1,4 +1,5 @@
 name: Compress Images
+
 on:
   push:
     branches: [main]
@@ -16,18 +17,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Compress
+      - uses: actions/checkout@v5
+
+      - name: Compress Images
         id: calibre
         uses: calibreapp/image-actions@main
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: false
-          convertToWebP: true
           jpegQuality: '85'
           pngQuality: '80'
           webpQuality: '85'
-      - name: Create PR
+
+      - name: Create Pull Request
         if: steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v5
         with:
